@@ -7,7 +7,6 @@ def init_db():
     conn = sqlite3.connect(DB_NAME)
     cur = conn.cursor()
 
-    # Create category table
     cur.execute('''
         CREATE TABLE IF NOT EXISTS FactLengthCategory (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -18,7 +17,6 @@ def init_db():
     categories = [("Short",), ("Medium",), ("Long",)]
     cur.executemany('INSERT OR IGNORE INTO FactLengthCategory (category_name) VALUES (?)', categories)
 
-    # Create dog facts table
     cur.execute('''
         CREATE TABLE IF NOT EXISTS DogFacts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
