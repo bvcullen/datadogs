@@ -3,6 +3,7 @@ import sqlite3
 
 DB_NAME = "final_project.db"
 
+#Method init_db
 def init_db():
     conn = sqlite3.connect(DB_NAME)
     cur = conn.cursor()
@@ -28,6 +29,7 @@ def init_db():
             FOREIGN KEY (category_id) REFERENCES FactLengthCategory(id)
         );
     ''')
+
 
     conn.commit()
     conn.close()
