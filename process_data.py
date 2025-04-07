@@ -63,7 +63,34 @@ def create_histogram():
     plt.savefig("fact_length_histogram.png")
     plt.show()
 
+def create_breed_bar_chart():
+    conn = sqlite3.connect(DB_NAME)
+    cur = conn.cursor()
+
+    # Get breed name counts
+    cur.execute('''
+        SELECT breed_name, COUNT(*) as count
+        FROM DogBreeds
+        GROUP BY breed_name
+        ORDER BY count DESC
+        LIMIT 10
+    ''')
+    results = cur.fetchall()
+    conn.close()
+
+    breeds = [row[0] for row in results]
+    counts = [row[1] for row in results]
+
+    plt.figure(figsize=(10, 6))
+    plt.barh(breeds[::-1], counts[::-1])  # reverse for descending top-to-bottom
+    plt.xlabel("Number of Images")
+    plt.title("Top 10 Most Common Dog Breeds")
+    plt.tight_layout()
+    plt.savefig("top_breeds_bar_chart.png")
+    plt.show()
+
 if __name__ == "__main__":
     counts = calculate_and_write_stats()
     create_bar_chart(counts)
     create_histogram()
+    create_breed_bar_chart()

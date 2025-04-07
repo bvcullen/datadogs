@@ -1,0 +1,7 @@
+Average dog fact length: 179.80 characters
+
+Fact count by length category:
+- Medium: 1 facts
+- Long: 4 facts
+
+Total dog breeds collected: 119
